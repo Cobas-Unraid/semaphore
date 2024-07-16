@@ -1,7 +1,7 @@
 - hosts: docker
   become: true
   tasks:
-    - name: Print OS info
+    - name: Create Test Directory
       ansible.builtin.command:
-        cmd: cat /etc/os-release
+        cmd: mkdir /home/coba/test
       
