@@ -39,19 +39,25 @@
       ansible.builtin.reboot:
         reboot_timeout: 600
 
-    - name: Update Ubuntu
+    - name: Update Debian
       when: ansible_facts['os_family'] == 'Debian'
       ansible.builtin.apt:
         upgrade: dist
         update_cache: true
 
-    - name: Check if a reboot is required on Ubuntu
+    - name: Check if a reboot is required on Debian
       when: ansible_facts['os_family'] == 'Debian'
       ansible.builtin.stat:
         path: /var/run/reboot-required
-      register: ubuntu_reboot_required
+        get_checksum: no
+      register: reboot_required_file
 
-    - name: Reboot Ubuntu if required
-      when: ubuntu_reboot_required.stat.exists | default(false)
+    - name: Reboot Debian if required
+      when: reboot_required_file.stat.exists | default(false)
       ansible.builtin.reboot:
         reboot_timeout: 600
+
+    - name: Remove dependencies that are no longer needed
+      when: ansible_facts['os_family'] == 'Debian'
+      ansible.builtin.apt:
+        autoremove: yes
