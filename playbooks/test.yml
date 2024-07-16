@@ -2,6 +2,6 @@
   become: true
   tasks:
     - name: Print OS info
-    ansible.builtin.command:
-      cmd: cat /etc/os-release
+      ansible.builtin.command:
+        cmd: cat /etc/os-release
       
