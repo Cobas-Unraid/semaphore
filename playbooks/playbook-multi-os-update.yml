@@ -49,7 +49,6 @@
       stat: path=/var/run/reboot-required get_checksum=false
 
     - name: Reboot Debian Linux if required
-      when: ansible_facts['os_family'] == 'Debian'
       reboot:
         msg: "Reboot initiated by Ansible for kernel updates"
         connect_timeout: 5
