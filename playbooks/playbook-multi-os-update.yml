@@ -41,8 +41,7 @@
 
     - name: Update Debian Linux
       when: ansible_facts['os_family'] == 'Debian'
-      apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
-      apt: upgrade=dist force_apt_get=yes
+      apt: update_cache=yes force_apt_get=yes cache_valid_time=3600 upgrade=dist
 
     - name: Check if Arch Linux requires a reboot
       when: ansible_facts['os_family'] == 'Debian'
