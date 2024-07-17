@@ -1,6 +1,7 @@
 ---
 - name: Update Windows, Arch Linux, and Debian Linux
   hosts: all
+  become: true
   tasks:
     - name: Gather facts
       ansible.builtin.setup:
