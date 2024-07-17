@@ -44,6 +44,10 @@
       ansible.builtin.apt:
         upgrade: dist
         update_cache: true
+      register: apt_get_status
+      until: apt_get_status is success
+      retries: 60
+      delay: 10
 
     - name: Check if a reboot is required on Debian Linux
       when: ansible_facts['os_family'] == 'Debian'
