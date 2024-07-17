@@ -1,5 +1,5 @@
 ---
-- name: Update Windows, Arch Linux, and Ubuntu
+- name: Update Windows, Arch Linux, and Debian
   hosts: all
   tasks:
     - name: Gather facts
