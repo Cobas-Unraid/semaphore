@@ -39,25 +39,23 @@
       ansible.builtin.reboot:
         reboot_timeout: 600
 
-    - name: Update Debian
+    - name: Update Debian Linux
       when: ansible_facts['os_family'] == 'Debian'
-      ansible.builtin.apt:
-        upgrade: dist
-        update_cache: true
+      apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+      apt: upgrade=dist force_apt_get=yes
 
-    - name: Check if a reboot is required on Debian
+    - name: Check if Arch Linux requires a reboot
       when: ansible_facts['os_family'] == 'Debian'
-      ansible.builtin.stat:
-        path: /var/run/reboot-required
-        get_checksum: no
       register: reboot_required_file
+      stat: path=/var/run/reboot-required get_checksum=false
 
-    - name: Reboot Debian if required
-      when: reboot_required_file.stat.exists | default(false)
-      ansible.builtin.reboot:
-        reboot_timeout: 600
-
-    - name: Remove dependencies that are no longer needed
+    - name: Reboot Debian Linux if required
       when: ansible_facts['os_family'] == 'Debian'
-      ansible.builtin.apt:
-        autoremove: yes
+      reboot:
+        msg: "Reboot initiated by Ansible for kernel updates"
+        connect_timeout: 5
+        reboot_timeout: 300
+        pre_reboot_delay: 0
+        post_reboot_delay: 30
+        test_command: uptime
+      when: reboot_required_file.stat.exists
