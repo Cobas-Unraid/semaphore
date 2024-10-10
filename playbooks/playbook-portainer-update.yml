@@ -1,1 +1,8 @@
+---
 
+- hosts: portainer-agent
+  become: true
+  tasks:
+
+  - name: Stop Current Portainer Agent
+    command: docker stop portainer_agent
