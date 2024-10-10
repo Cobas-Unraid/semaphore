@@ -4,5 +4,8 @@
   become: true
   tasks:
 
-  - name: Stop Current Portainer Agent
+  - name: Stop Current Portainer Agents
     command: docker stop portainer_agent
+
+  - name: Remove Current Portainer Agents
+    command: docker rm portainer_agent
