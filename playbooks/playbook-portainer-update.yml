@@ -1,5 +1,22 @@
 ---
 
+- hosts: portainer
+  become: true
+  tasks:
+
+  - name: Stop Current Portainer Service
+  command: docker stop portainer
+
+  - name: Remove Current Portainer Service
+  command: docker rm portainer
+
+  - name: Pulling Latest Portainer Image
+  command: docker pull portainer/portainer-ce:latest
+
+  - name: Deploying Updated Portainer Service
+  command: docker run -d -p 8000:8000 -p 9443:9443 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+
+
 - hosts: portainer-agent
   become: true
   tasks:
