@@ -10,7 +10,7 @@
   - name: Remove Current Portainer Service
     command: docker rm portainer
   
-  - name: Pulling Latest Portainer Image
+  - name: Pulling Latest Portainer Image ({{version}})
     command: docker pull portainer/portainer-ce:{{version}}
   
   - name: Deploying Updated Portainer Service
@@ -27,7 +27,7 @@
   - name: Remove Current Portainer Agents
     command: docker rm portainer_agent
 
-  - name: Pulling Latest Portainer Image
+  - name: Pulling Latest Portainer Image ({{version}})
     command: docker pull portainer/agent:{{version}}
 
   - name: Deploying Updated Portainer Agents
