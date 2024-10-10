@@ -11,10 +11,10 @@
     command: docker rm portainer
   
   - name: Pulling Latest Portainer Image
-    command: docker pull portainer/portainer-ce:latest
+    command: docker pull portainer/portainer-ce:{{version}}
   
   - name: Deploying Updated Portainer Service
-    command: docker run -d -p 8000:8000 -p 9443:9443 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+    command: docker run -d -p 8000:8000 -p 9443:9443 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:{{version}}
 
 
 - hosts: portainer-agent
@@ -28,7 +28,7 @@
     command: docker rm portainer_agent
 
   - name: Pulling Latest Portainer Image
-    command: docker pull portainer/agent:latest
+    command: docker pull portainer/agent:{{version}}
 
   - name: Deploying Updated Portainer Agents
-    command: docker run -d -p 9001:9001 --name portainer_agent --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker/volumes:/var/lib/docker/volumes portainer/agent:latest
+    command: docker run -d -p 9001:9001 --name portainer_agent --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker/volumes:/var/lib/docker/volumes portainer/agent:{{version}}
