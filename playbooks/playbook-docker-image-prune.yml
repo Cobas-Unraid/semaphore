@@ -1,7 +1,11 @@
 - hosts: docker
   become: true
   tasks:
-  
+
+  - name: Installing pexpect
+    ansible.builtin.apt:
+      install: python3-pexpect
+        
   - name: Prune Unused Docker Images 
     expect:
       command: docker image prune
