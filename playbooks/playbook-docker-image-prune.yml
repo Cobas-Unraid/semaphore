@@ -2,11 +2,11 @@
   become: true
   tasks:
 
-  - name: Install pip
+  - name: Install pipx
     apt:
       update_cache: yes
       name:
-        - python3-pipx
+        - pipx
 
   - name: Install pexpect
     command: pipx install pexpect
