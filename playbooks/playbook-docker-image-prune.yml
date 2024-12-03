@@ -6,11 +6,10 @@
     apt:
       update_cache: yes
       name:
-        - python3-pip
+        - python3-pipx
 
   - name: Install pexpect
-    pip:
-      name: pexpect
+    command: pipx install pexpect
       
   - name: Prune Unused Docker Images 
     ansible.builtin.expect:
