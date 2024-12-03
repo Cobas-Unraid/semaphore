@@ -8,5 +8,5 @@
       update_cache: yes
         
   - name: Prune Unused Docker Images 
-    shell: ( echo y ) | docker image prune
+    shell: ( echo y ) | docker image prune -a
       
