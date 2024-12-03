@@ -1,1 +1,6 @@
+- hosts: docker
+  become: true
+  tasks:
 
+  - name: Prune Unused Docker Images 
+    command: docker image prune
