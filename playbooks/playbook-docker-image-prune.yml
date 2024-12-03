@@ -4,7 +4,8 @@
 
   - name: Installing pexpect
     ansible.builtin.apt:
-      install: python3-pexpect
+      name: python3-pexpect
+      update_cache: yes
         
   - name: Prune Unused Docker Images 
     expect:
