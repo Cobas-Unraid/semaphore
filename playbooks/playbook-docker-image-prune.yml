@@ -3,12 +3,8 @@
   tasks:
   
   - name: Prune Unused Docker Images 
-    community.docker.docker_prune:
-      containers: false
-      images: true
-      images_filters:
-        dangling: true
-      networks: false
-      volumes: false
-      builder_cache: false
+    expect:
+      command: docker image prune
+      responses:
+        'Confirmation' : 'y'
       
