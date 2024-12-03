@@ -1,19 +1,12 @@
 - hosts: docker
   become: true
   tasks:
-
-  - name: Install pipx
-    apt:
-      update_cache: yes
-      name:
-        - pipx
-
-  - name: Install pexpect
-    command: pipx install pexpect
-      
+  
   - name: Prune Unused Docker Images 
-    ansible.builtin.expect:
-      command: docker image prune
-      responses:
-        'Confirmation': 'y'
+    community.docker.docker_prune:
+      containers: false
+      images: true
+      networks: false
+      volumes: false
+      builder_cache: false
       
