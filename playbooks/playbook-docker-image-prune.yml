@@ -8,9 +8,5 @@
       update_cache: yes
         
   - name: Prune Unused Docker Images 
-    ansible.builtin.expect:
-      command: docker image prune
-      responses:
-        'WARNING! This will remove all dangling images.\r\nAre you sure you want to continue? [y/N] ': 
-          - 'y'
+    shell: docker image prune
       
