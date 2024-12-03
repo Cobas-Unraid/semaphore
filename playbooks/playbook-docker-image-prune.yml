@@ -8,8 +8,8 @@
       update_cache: yes
         
   - name: Prune Unused Docker Images 
-    expect:
+    ansible.builtin.expect:
       command: docker image prune
       responses:
-        'Confirmation' : 'y'
+        'Are you sure you want to continue? [y/N] ' : 'y'
       
