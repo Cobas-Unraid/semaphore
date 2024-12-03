@@ -3,4 +3,8 @@
   tasks:
 
   - name: Prune Unused Docker Images 
+  ansible.builtin.expect:
     command: docker image prune
+    responses:
+      'Confirmation': 'y'
+      
